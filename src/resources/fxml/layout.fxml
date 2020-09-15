@@ -18,8 +18,8 @@
         <Circle fx:id="smallestCircle" centerX="600" centerY="400" radius="250" fill="moccasin"/>
     </Group>
     <Group fx:id="racers">
-        <Circle fx:id="firstRacer" centerX="600" centerY="725" radius="15" fill="red"/>
-        <Circle fx:id="secondRacer" centerX="600" centerY="675" radius="15" fill="blue"/>
-        <Circle fx:id="thirdRacer" centerX="600" centerY="625" radius="15" fill="green"/>
+        <Circle fx:id="firstRacerModel" centerX="950" centerY="400" radius="15" fill="red"/>
+        <Circle fx:id="secondRacerModel" centerX="900" centerY="400" radius="15" fill="blue"/>
+        <Circle fx:id="thirdRacerModel" centerX="850" centerY="400" radius="15" fill="green"/>
     </Group>
 </BorderPane>
