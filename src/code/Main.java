@@ -13,33 +13,43 @@ import javafx.util.Duration;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
-        Circle circle = new Circle(10);
-        circle.setCenterX(300);
-        circle.setCenterY(250);
-        circle.setRadius(20);
-
-        Circle path = new Circle(200);
-        path.setCenterX(300);
-        path.setCenterY(250);
-
-        PathTransition transition = new PathTransition();
-        transition.setNode(circle);
-        transition.setDuration(Duration.seconds(5));
-        transition.setPath(path);
-        transition.setCycleCount(PathTransition.INDEFINITE);
-        transition.play();
-
-
-
-        Group root = new Group(circle);
-
-        Scene scene = new Scene(root, 600, 500);
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/resources/fxml/layout.fxml"));
+        Scene scene = new Scene(rootNode);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Drawing a circle");
+        primaryStage.setTitle("Circular race");
+        primaryStage.setWidth(1000);
+        primaryStage.setHeight(1000);
+
         primaryStage.show();
+
+//        Circle circle = new Circle(10);
+//        circle.setCenterX(300);
+//        circle.setCenterY(250);
+//        circle.setRadius(20);
+//
+//        Circle path = new Circle(200);
+//        path.setCenterX(300);
+//        path.setCenterY(250);
+//
+//        PathTransition transition = new PathTransition();
+//        transition.setNode(circle);
+//        transition.setDuration(Duration.seconds(5));
+//        transition.setPath(path);
+//        transition.setCycleCount(PathTransition.INDEFINITE);
+//        transition.play();
+//
+//
+//
+//        Group root = new Group(circle);
+//
+//        Scene scene = new Scene(root, 600, 500);
+//
+//        primaryStage.setScene(scene);
+//        primaryStage.setTitle("Drawing a circle");
+//        primaryStage.show();
     }
 
 

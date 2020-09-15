@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.Group?>
+
+<BorderPane fx:controller="code.controllers.Controller" xmlns:fx="http://javafx.com/javafx/1" prefWidth="1000" prefHeight="1000">
+    <padding><Insets top="25" right="10" bottom="25" left="10"/></padding>
+    <Group fx:id="buttons">
+        <Button fx:id="startButton" text="Start" layoutX="50" layoutY="50" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#startRace"/>
+        <Button fx:id="changeSpeedButton" text="Change Speed" layoutY="125" layoutX="50" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#changeSpeed"/>
+    </Group>
+    <Group fx:id="paths">
+        <Circle fx:id="biggestCircle" centerX="600" centerY="400" radius="350" fill="bisque"/>
+        <Circle fx:id="middleCircle" centerX="600" centerY="400" radius="300" fill="burlywood"/>
+        <Circle fx:id="smallestCircle" centerX="600" centerY="400" radius="250" fill="moccasin"/>
+    </Group>
+    <Group fx:id="racers">
+        <Circle fx:id="firstRacer" centerX="600" centerY="725" radius="15" fill="red"/>
+        <Circle fx:id="secondRacer" centerX="600" centerY="675" radius="15" fill="blue"/>
+        <Circle fx:id="thirdRacer" centerX="600" centerY="625" radius="15" fill="green"/>
+    </Group>
+</BorderPane>
