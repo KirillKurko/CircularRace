@@ -35,18 +35,27 @@ public class Controller {
     }
 
     @FXML
-    private void startRace() {
+    public void startRace() {
         System.out.println("Race started");
-        firstRacer.run();
-        secondRacer.run();
-        thirdRacer.run();
+        Thread firstRacerThread = new Thread(firstRacer);
+        Thread secondRacerThread = new Thread(secondRacer);
+        Thread thirdRacerThread = new Thread(thirdRacer);
+
+        firstRacerThread.start();
+        secondRacerThread.start();
+        thirdRacerThread.start();
     }
 
     @FXML
-    private void changeSpeed() {
+    public void changeSpeed() {
         System.out.println("Speed changed");
         firstRacer.changeSpeed();
         secondRacer.changeSpeed();
         thirdRacer.changeSpeed();
+    }
+
+    @FXML
+    public void resetRace() {
+
     }
 }

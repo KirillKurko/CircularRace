@@ -26,7 +26,6 @@ public class Racer extends Thread {
         transition = new PathTransition();
         transition.setNode(model);
         transition.setPath(path);
-        //transition.setDuration(Duration.seconds(speed));
         transition.setRate(speed);
     }
 
