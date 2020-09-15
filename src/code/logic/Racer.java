@@ -4,6 +4,8 @@ import javafx.animation.PathTransition;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 public class Racer extends Thread {
 
     private String racerName;
@@ -24,7 +26,8 @@ public class Racer extends Thread {
         transition = new PathTransition();
         transition.setNode(model);
         transition.setPath(path);
-        transition.setDuration(Duration.seconds(speed));
+        //transition.setDuration(Duration.seconds(speed));
+        transition.setRate(speed);
     }
 
     public String getRacerName() {
@@ -33,10 +36,13 @@ public class Racer extends Thread {
 
     @Override
     public void run() {
+        transition.setRate(speed);
         transition.play();
     }
 
     public void changeSpeed() {
-        transition.setRate(3);
+        Random randomGenerator = new Random();
+        double rate = randomGenerator.nextDouble() / 10;
+        transition.setRate(rate);
     }
 }

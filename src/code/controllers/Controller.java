@@ -29,9 +29,9 @@ public class Controller {
     private Racer thirdRacer;
 
     public void initialize() {
-        firstRacer = new Racer("first", 5, firstRacerModel, biggestCircle);
-        secondRacer = new Racer("second", 5, secondRacerModel, middleCircle);
-        thirdRacer = new Racer("third", 5, thirdRacerModel, smallestCircle);
+        firstRacer = new Racer("first", 0.1, firstRacerModel, biggestCircle);
+        secondRacer = new Racer("second", 0.1, secondRacerModel, middleCircle);
+        thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
     }
 
     @FXML
