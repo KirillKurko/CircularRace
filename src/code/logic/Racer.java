@@ -10,40 +10,33 @@ public class Racer extends Thread {
     private double speed;
     private Circle model;
     private Circle path;
+    private PathTransition transition;
 
     public Racer(String racerName, double speed, Circle model, Circle path) {
         this.racerName = racerName;
         this.speed = speed;
         this.model = model;
         this.path = path;
+        initializePathTransition();
+    }
+
+    private void initializePathTransition() {
+        transition = new PathTransition();
+        transition.setNode(model);
+        transition.setPath(path);
+        transition.setDuration(Duration.seconds(speed));
     }
 
     public String getRacerName() {
         return racerName;
     }
 
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setRacerName(String racerName) {
-        this.racerName = racerName;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public void setPath(Circle path) {
-        this.path = path;
-    }
-
     @Override
     public void run() {
-        PathTransition transition = new PathTransition();
-        transition.setNode(model);
-        transition.setDuration(Duration.seconds(speed));
-        transition.setPath(path);
         transition.play();
+    }
+
+    public void changeSpeed() {
+        transition.setRate(3);
     }
 }

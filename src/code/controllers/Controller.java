@@ -45,5 +45,8 @@ public class Controller {
     @FXML
     private void changeSpeed() {
         System.out.println("Speed changed");
+        firstRacer.changeSpeed();
+        secondRacer.changeSpeed();
+        thirdRacer.changeSpeed();
     }
 }
