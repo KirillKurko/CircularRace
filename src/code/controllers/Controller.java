@@ -1,7 +1,8 @@
 package code.controllers;
 
-import code.logic.Racer;
+import code.core.Racer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.shape.Circle;
@@ -32,12 +33,18 @@ public class Controller {
     @FXML
     private Button changeSpeedButton;
 
+    @FXML
+    private Button startButton;
+
     private Racer firstRacer;
     private Racer secondRacer;
     private Racer thirdRacer;
 
+    private static int position;
+
     @FXML
-    public void startRace() throws InterruptedException {
+    public void startRace() {
+        position = 0;
         createRacers();
         firstRacer.start();
         secondRacer.start();
@@ -78,5 +85,13 @@ public class Controller {
         firstRacer.changeAnimationState(state);
         secondRacer.changeAnimationState(state);
         thirdRacer.changeAnimationState(state);
+    }
+
+    public static void showAlert(String name) {
+        ++position;
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Results");
+        alert.setHeaderText(name + " finished!\nPosition: " + position);
+        alert.show();
     }
 }

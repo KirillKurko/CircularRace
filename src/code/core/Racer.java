@@ -1,4 +1,4 @@
-package code.logic;
+package code.core;
 
 import code.controllers.Controller;
 import javafx.animation.PathTransition;
@@ -28,6 +28,7 @@ public class Racer extends Thread {
         transition.setRate(speed);
         transition.setOnFinished(event -> {
             System.out.println(racerName + " finished!");
+            Controller.showAlert(racerName);
         });
     }
 
@@ -49,5 +50,9 @@ public class Racer extends Thread {
         } else {
             transition.play();
         }
+    }
+
+    public String getRacerName() {
+        return racerName;
     }
 }
