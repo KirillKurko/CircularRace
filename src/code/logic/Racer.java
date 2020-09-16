@@ -27,13 +27,8 @@ public class Racer extends Thread {
         transition.setPath(path);
         transition.setRate(speed);
         transition.setOnFinished(event -> {
-            Controller.result += racerName;
             System.out.println(racerName + " finished!");
         });
-    }
-
-    public String getRacerName() {
-        return racerName;
     }
 
     @Override
@@ -48,8 +43,8 @@ public class Racer extends Thread {
         transition.setRate(rate);
     }
 
-    public void changeAnimationState(boolean needPause) {
-        if (needPause) {
+    public void changeAnimationState(boolean state) {
+        if (state) {
             transition.pause();
         } else {
             transition.play();

@@ -36,15 +36,18 @@ public class Controller {
     private Racer secondRacer;
     private Racer thirdRacer;
 
-    public static String result;
-
     @FXML
     public void startRace() throws InterruptedException {
-        result = "";
         createRacers();
         firstRacer.start();
         secondRacer.start();
         thirdRacer.start();
+    }
+
+    private void createRacers() {
+        firstRacer = new Racer("first", 0.1, firstRacerModel, biggestCircle);
+        secondRacer = new Racer("second", 0.1, secondRacerModel, middleCircle);
+        thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
     }
 
     @FXML
@@ -58,26 +61,22 @@ public class Controller {
     public void changeAnimationState() {
         boolean state = changeAnimationStateButton.isSelected();
         changeSpeedButton.setDisable(state);
+        setChangeAnimationStateButtonText(state);
+        changeRacersAnimationState(state);
+    }
+
+    private void setChangeAnimationStateButtonText(boolean state) {
         if (state) {
             changeAnimationStateButton.setText("Play");
         }
         else {
             changeAnimationStateButton.setText("Pause");
         }
+    }
+
+    private void changeRacersAnimationState(boolean state) {
         firstRacer.changeAnimationState(state);
         secondRacer.changeAnimationState(state);
         thirdRacer.changeAnimationState(state);
-    }
-
-    private void createRacers() {
-        firstRacer = new Racer("first", 0.1, firstRacerModel, biggestCircle);
-        secondRacer = new Racer("second", 0.1, secondRacerModel, middleCircle);
-        thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
-    }
-
-
-
-    public synchronized static void finish(Racer racer) {
-        result += racer.getRacerName() + " ";
     }
 }
