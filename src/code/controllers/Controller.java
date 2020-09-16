@@ -40,11 +40,13 @@ public class Controller {
     private Racer secondRacer;
     private Racer thirdRacer;
 
-    private static int position;
+    private static int count;
+    private static String result;
 
     @FXML
     public void startRace() {
-        position = 0;
+        count = 0;
+        result = "";
         createRacers();
         firstRacer.start();
         secondRacer.start();
@@ -52,9 +54,9 @@ public class Controller {
     }
 
     private void createRacers() {
-        firstRacer = new Racer("first", 0.1, firstRacerModel, biggestCircle);
-        secondRacer = new Racer("second", 0.1, secondRacerModel, middleCircle);
-        thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
+        firstRacer = new Racer("Red", 0.1, firstRacerModel, biggestCircle);
+        secondRacer = new Racer("Blue", 0.1, secondRacerModel, middleCircle);
+        thirdRacer = new Racer("Green", 0.1, thirdRacerModel, smallestCircle);
     }
 
     @FXML
@@ -87,11 +89,14 @@ public class Controller {
         thirdRacer.changeAnimationState(state);
     }
 
-    public static void showAlert(String name) {
-        ++position;
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Results");
-        alert.setHeaderText(name + " finished!\nPosition: " + position);
-        alert.show();
+    public static void showResultAlert(String name) {
+        ++count;
+        result += count + ". " + name + "\n";
+        if (count == 3) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Results");
+            alert.setHeaderText(result);
+            alert.show();
+        }
     }
 }

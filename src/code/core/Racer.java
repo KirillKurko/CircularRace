@@ -26,10 +26,7 @@ public class Racer extends Thread {
         transition.setNode(model);
         transition.setPath(path);
         transition.setRate(speed);
-        transition.setOnFinished(event -> {
-            System.out.println(racerName + " finished!");
-            Controller.showAlert(racerName);
-        });
+        transition.setOnFinished(event -> Controller.showResultAlert(racerName));
     }
 
     @Override
@@ -50,9 +47,5 @@ public class Racer extends Thread {
         } else {
             transition.play();
         }
-    }
-
-    public String getRacerName() {
-        return racerName;
     }
 }
