@@ -28,10 +28,12 @@ public class Controller {
     private Racer secondRacer;
     private Racer thirdRacer;
 
+    public static String result;
+
     @FXML
-    public void startRace() {
-        System.out.println("Race started");
-        resetRace();
+    public void startRace() throws InterruptedException {
+        result = "";
+        createRacers();
         firstRacer.start();
         secondRacer.start();
         thirdRacer.start();
@@ -39,7 +41,6 @@ public class Controller {
 
     @FXML
     public void changeSpeed() {
-        System.out.println("Speed changed");
         firstRacer.changeSpeed();
         secondRacer.changeSpeed();
         thirdRacer.changeSpeed();
@@ -47,8 +48,23 @@ public class Controller {
 
     @FXML
     public void resetRace() {
+        firstRacer.pauseOrPlay(true);
+        secondRacer.pauseOrPlay(true);
+        thirdRacer.pauseOrPlay(true);
+    }
+
+    private void createRacers() {
         firstRacer = new Racer("first", 0.1, firstRacerModel, biggestCircle);
         secondRacer = new Racer("second", 0.1, secondRacerModel, middleCircle);
         thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
+    }
+
+//    @FXML
+//    private void viewResult() {
+//        System.out.println(result);
+//    }
+
+    public synchronized static void finish(Racer racer) {
+        result += racer.getRacerName() + " ";
     }
 }

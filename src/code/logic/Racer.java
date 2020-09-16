@@ -1,9 +1,8 @@
 package code.logic;
 
+import code.controllers.Controller;
 import javafx.animation.PathTransition;
 import javafx.scene.shape.Circle;
-import javafx.util.Duration;
-
 import java.util.Random;
 
 public class Racer extends Thread {
@@ -27,6 +26,10 @@ public class Racer extends Thread {
         transition.setNode(model);
         transition.setPath(path);
         transition.setRate(speed);
+        transition.setOnFinished(event -> {
+            Controller.result += racerName;
+            System.out.println(racerName + " finished!");
+        });
     }
 
     public String getRacerName() {
@@ -43,5 +46,13 @@ public class Racer extends Thread {
         Random randomGenerator = new Random();
         double rate = randomGenerator.nextDouble() / 10;
         transition.setRate(rate);
+    }
+
+    public void changeAnimationState(boolean needPause) {
+        if (needPause) {
+            transition.pause();
+        } else {
+            transition.play();
+        }
     }
 }
