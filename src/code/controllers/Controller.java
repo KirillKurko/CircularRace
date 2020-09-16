@@ -2,6 +2,8 @@ package code.controllers;
 
 import code.logic.Racer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.shape.Circle;
 
 public class Controller {
@@ -23,6 +25,12 @@ public class Controller {
 
     @FXML
     private Circle thirdRacerModel;
+
+    @FXML
+    private ToggleButton changeAnimationStateButton;
+
+    @FXML
+    private Button changeSpeedButton;
 
     private Racer firstRacer;
     private Racer secondRacer;
@@ -47,10 +55,18 @@ public class Controller {
     }
 
     @FXML
-    public void resetRace() {
-        firstRacer.pauseOrPlay(true);
-        secondRacer.pauseOrPlay(true);
-        thirdRacer.pauseOrPlay(true);
+    public void changeAnimationState() {
+        boolean state = changeAnimationStateButton.isSelected();
+        changeSpeedButton.setDisable(state);
+        if (state) {
+            changeAnimationStateButton.setText("Play");
+        }
+        else {
+            changeAnimationStateButton.setText("Pause");
+        }
+        firstRacer.changeAnimationState(state);
+        secondRacer.changeAnimationState(state);
+        thirdRacer.changeAnimationState(state);
     }
 
     private void createRacers() {
@@ -59,10 +75,7 @@ public class Controller {
         thirdRacer = new Racer("third", 0.1, thirdRacerModel, smallestCircle);
     }
 
-//    @FXML
-//    private void viewResult() {
-//        System.out.println(result);
-//    }
+
 
     public synchronized static void finish(Racer racer) {
         result += racer.getRacerName() + " ";

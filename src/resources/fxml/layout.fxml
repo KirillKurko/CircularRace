@@ -6,12 +6,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.Group?>
 
+<?import javafx.scene.control.ToggleButton?>
 <BorderPane fx:controller="code.controllers.Controller" xmlns:fx="http://javafx.com/javafx/1" prefWidth="1000" prefHeight="1000">
     <padding><Insets top="25" right="10" bottom="25" left="10"/></padding>
     <Group fx:id="buttons">
         <Button fx:id="startButton" text="Start" layoutX="50" layoutY="50" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#startRace"/>
-        <Button fx:id="changeSpeedButton" text="Change Speed" layoutY="200" layoutX="50" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#changeSpeed"/>
+        <Button fx:id="changeSpeedButton" text="Change Speed" layoutX="50" layoutY="125" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#changeSpeed"/>
+        <ToggleButton fx:id="changeAnimationStateButton" text="Pause" layoutX="50" layoutY="200" prefWidth="150" prefHeight="50" textAlignment="CENTER" onAction="#changeAnimationState"/>
     </Group>
+
     <Group fx:id="paths">
         <Circle fx:id="biggestCircle" centerX="600" centerY="400" radius="350" fill="bisque"/>
         <Circle fx:id="middleCircle" centerX="600" centerY="400" radius="300" fill="burlywood"/>
