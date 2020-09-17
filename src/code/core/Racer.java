@@ -12,6 +12,7 @@ public class Racer extends Thread {
     private Circle model;
     private Circle path;
     private PathTransition transition;
+    private boolean finished;
 
     public Racer(String racerName, double speed, Circle model, Circle path) {
         this.racerName = racerName;
@@ -19,6 +20,7 @@ public class Racer extends Thread {
         this.model = model;
         this.path = path;
         initializePathTransition();
+        finished = false;
     }
 
     private void initializePathTransition() {
@@ -26,7 +28,10 @@ public class Racer extends Thread {
         transition.setNode(model);
         transition.setPath(path);
         transition.setRate(speed);
-        transition.setOnFinished(event -> Controller.showResultAlert(racerName));
+        transition.setOnFinished(event -> {
+            Controller.showResultAlert(racerName);
+            finished = true;
+        });
     }
 
     @Override
@@ -36,16 +41,20 @@ public class Racer extends Thread {
     }
 
     public void changeSpeed() {
-        Random randomGenerator = new Random();
-        double rate = randomGenerator.nextDouble() / 10;
-        transition.setRate(rate);
+        if (!finished) {
+            Random randomGenerator = new Random();
+            double rate = randomGenerator.nextDouble() / 10;
+            transition.setRate(rate);
+        }
     }
 
     public void changeAnimationState(boolean state) {
-        if (state) {
-            transition.pause();
-        } else {
-            transition.play();
+        if (!finished) {
+            if (state) {
+                transition.pause();
+            } else {
+                transition.play();
+            }
         }
     }
 }
